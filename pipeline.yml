@@ -13,6 +13,14 @@ resources:
       paths:
         - server
       branch: master
+  - name: cf
+    type: cf
+    source:
+      api: https://api.run.pivotal.io
+      username: ((cf-username))
+      password: ((cf-password))
+      organization: ((cf-org))
+      space: ((cf-space))
 
 jobs:
   - name: test-web
@@ -37,6 +45,42 @@ jobs:
               cd web/web
               yarn install
               CI=true yarn test
+  - name: build-web
+    plan:
+      - get: web
+        trigger: true
+        passed: [test-web]
+      - task: build
+        config:
+          platform: linux
+          params:
+            SERVER_URL: ((server-url))
+          image_resource:
+            type: docker-image
+            source:
+              repository: node
+              tag: "alpine"
+          inputs:
+            - name: web
+          outputs:
+            - name: build
+          run:
+            path: sh
+            args:
+            - -exc
+            - |
+              cd web/web
+              yarn install
+              yarn build
+              cp -rf build/* ../../build/
+              cp manifest.yml ../../build/
+              cp Staticfile ../../build/
+      - put: cf
+        params:
+          manifest: build/manifest.yml
+          path: build
+          current_app_name: ((allocations-web))
+
   - name: test-server
     plan:
       - get: server
@@ -59,3 +103,8 @@ jobs:
               cd server/server
               yarn install
               CI=true yarn test
+      - put: cf
+        params:
+          manifest: server/server/manifest.yml
+          path: server/server
+          current_app_name: ((allocations-server))
