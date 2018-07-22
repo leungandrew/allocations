@@ -1,0 +1,27 @@
+resources:
+  - name: web
+    type: git
+    source: {uri: "https://github.com/leungandrew/allocations/web"}
+  #- name: server
+    #type: git
+    #source: {uri: "https://github.com/leungandrew/allocations/server"}
+
+jobs:
+  - name: test-web
+    plan:
+      - get: web
+        trigger: true
+      - task: test
+        config:
+          platform: linux
+          image_resource:
+            type: docker-image
+            source: {repository: 10.7-alpine}
+          run:
+            path: sh
+            args:
+            - -exc
+            - |
+              cd web
+              yarn install
+              yarn test
