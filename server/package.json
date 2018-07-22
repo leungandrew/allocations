@@ -6,6 +6,9 @@
   "repository": "https://github.com/leungandrew/allocations.git",
   "author": "Andrew Leung",
   "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
   "dependencies": {
     "apollo-server": "^2.0.0",
     "graphql": "^0.13.2"
