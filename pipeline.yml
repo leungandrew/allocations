@@ -1,10 +1,18 @@
 resources:
   - name: web
     type: git
-    source: {uri: "https://github.com/leungandrew/allocations/web"}
-  #- name: server
-    #type: git
-    #source: {uri: "https://github.com/leungandrew/allocations/server"}
+    source:
+      uri: https://github.com/leungandrew/allocations
+      paths:
+        - web
+      branch: master
+  - name: server
+    type: git
+    source:
+      uri: https://github.com/leungandrew/allocations
+      paths:
+        - server
+      branch: master
 
 jobs:
   - name: test-web
@@ -16,12 +24,38 @@ jobs:
           platform: linux
           image_resource:
             type: docker-image
-            source: {repository: 10.7-alpine}
+            source:
+              repository: node
+              tag: "alpine"
+          inputs:
+            - name: web
           run:
             path: sh
             args:
             - -exc
             - |
-              cd web
+              cd web/web
               yarn install
-              yarn test
+              CI=true yarn test
+  - name: test-server
+    plan:
+      - get: server
+        trigger: true
+      - task: test
+        config:
+          platform: linux
+          image_resource:
+            type: docker-image
+            source:
+              repository: node
+              tag: "alpine"
+          inputs:
+            - name: server
+          run:
+            path: sh
+            args:
+            - -exc
+            - |
+              cd server/server
+              yarn install
+              CI=true yarn test
