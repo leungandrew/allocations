@@ -10,7 +10,8 @@
     "test": "jest"
   },
   "engines": {
-    "node": "10.7.0"
+    "node": "10.7.0",
+    "yarn": "1.7.0"
   },
   "dependencies": {
     "apollo-server": "^2.0.0",
