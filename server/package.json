@@ -9,6 +9,9 @@
   "scripts": {
     "test": "jest"
   },
+  "engines": {
+    "node": "10.7.0"
+  },
   "dependencies": {
     "apollo-server": "^2.0.0",
     "graphql": "^0.13.2"

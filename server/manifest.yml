@@ -1,0 +1,6 @@
+---
+applications:
+  - name: app
+    memory: 64MB
+    instances: 2
+    command: node index.js
