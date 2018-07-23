@@ -13,6 +13,11 @@ resources:
       paths:
         - server
       branch: master
+  - name: functional-tests
+    type: git
+    source:
+      uri: https://github.com/leungandrew/allocations
+      branch: master
   - name: cf
     type: cf
     source:
@@ -108,3 +113,25 @@ jobs:
           manifest: server/server/manifest.yml
           path: server/server
           current_app_name: ((allocations-server))
+  - name: test-functional
+    plan:
+      - get: functional-tests
+        trigger: true
+      - task: test
+        passed: [build-web]
+        config:
+          platform: linux
+          image_resource:
+            type: docker-image
+            source:
+              repository: testcafe
+              tag: "testcafe"
+          inputs:
+            - name: functional-tests
+          run:
+            path: sh
+            args:
+              - -exc
+              - |
+                cd functional-tests/functional-tests
+                testcafe chrome test.js

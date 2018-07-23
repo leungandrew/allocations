@@ -7,7 +7,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Button variant="contained" color="primary">
+        <Button id="hello-world" variant="contained" color="primary">
           Hello World!
         </Button>
       </div>
