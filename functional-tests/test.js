@@ -5,6 +5,11 @@ fixture `Getting Started`
   //.page `http://localhost:3000`;
 
 test('my first test', async t => {
-  const button = Selector('#hello-world').exists;
-  await t.expect(button).ok();
+  const button = Selector('#hello-world');
+  const dialog =  Selector('#dialog');
+  await t
+    .expect(button.exists).ok()
+    .expect(dialog.exists).notOk()
+    .click(button)
+    .expect(dialog.exists).ok();
 });
