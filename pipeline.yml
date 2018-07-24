@@ -13,11 +13,6 @@ resources:
       paths:
         - server
       branch: master
-  - name: functional-tests
-    type: git
-    source:
-      uri: https://github.com/leungandrew/allocations
-      branch: master
   - name: cf
     type: cf
     source:
@@ -50,7 +45,7 @@ jobs:
               cd web/web
               yarn install
               CI=true yarn test
-  - name: build-web
+  - name: deploy-web
     plan:
       - get: web
         trigger: true
@@ -108,6 +103,11 @@ jobs:
               cd server/server
               yarn install
               CI=true yarn test
+  - name: deploy-server
+    plan:
+      - get: server
+        trigger: true
+        passed: [test-server]
       - put: cf
         params:
           manifest: server/server/manifest.yml
@@ -115,7 +115,11 @@ jobs:
           current_app_name: ((allocations-server))
   - name: test-functional
     plan:
-      - get: functional-tests
+      - get: web
+        passed: [deploy-web]
+        trigger: true
+      - get: server
+        passed: [deploy-server]
         trigger: true
       - task: test
         config:
@@ -125,11 +129,11 @@ jobs:
             source:
               repository: testcafe/testcafe
           inputs:
-            - name: functional-tests
+            - name: web
           run:
             path: sh
             args:
               - -exc
               - |
-                cd functional-tests/functional-tests
+                cd web/functional-tests
                 /opt/testcafe/docker/testcafe-docker.sh firefox test.js
