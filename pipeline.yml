@@ -118,14 +118,12 @@ jobs:
       - get: functional-tests
         trigger: true
       - task: test
-        passed: [build-web]
         config:
           platform: linux
           image_resource:
             type: docker-image
             source:
-              repository: testcafe
-              tag: "testcafe"
+              repository: testcafe/testcafe
           inputs:
             - name: functional-tests
           run:
@@ -134,4 +132,4 @@ jobs:
               - -exc
               - |
                 cd functional-tests/functional-tests
-                testcafe chrome test.js
+                /opt/testcafe/docker/testcafe-docker.sh firefox test.js
