@@ -53,8 +53,6 @@ jobs:
       - task: build
         config:
           platform: linux
-          params:
-            SERVER_URL: ((server-url))
           image_resource:
             type: docker-image
             source:
@@ -64,6 +62,8 @@ jobs:
             - name: web
           outputs:
             - name: build
+          params:
+            REACT_APP_GRAPHQL_URI: ((server-url))
           run:
             path: sh
             args:

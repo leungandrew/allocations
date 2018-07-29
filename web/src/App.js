@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Route } from 'react-router-dom';
-import HomePage from './pages/HomePage';
+import DashboardPage from './pages/DashboardPage';
 import { BrowserRouter } from 'react-router-dom';
 
 class App extends Component {
@@ -11,7 +11,7 @@ class App extends Component {
     return (
       <div className="App">
         <BrowserRouter>
-          <Route path="/" component={HomePage}/>
+          <Route path="/" component={DashboardPage}/>
         </BrowserRouter>
       </div>
     );
