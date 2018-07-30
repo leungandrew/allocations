@@ -2,6 +2,11 @@
 
 exports[`ProjectsList renders a list of projects 1`] = `
 <div>
-  Some Project
+  <li>
+    Project A
+  </li>
+  <li>
+    Project B
+  </li>
 </div>
 `;

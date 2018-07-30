@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DashboardPage renders ProjectLists 1`] = `
+<div
+  id="container"
+>
+  <div>
+    <li>
+      Project A
+    </li>
+    <li>
+      Project B
+    </li>
+  </div>
+</div>
+`;
