@@ -1,10 +1,12 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { Query }  from 'react-apollo';
+import Project from './Project';
 
 export const GET_PROJECTS_QUERY = gql`
   query getProjects {
     projects {
+      id
       name
     }
   }`;
@@ -18,7 +20,7 @@ const ProjectsList = () => {
           <div>
             {
               data.projects.map(project =>
-                <div>{project.name}</div>
+                <Project project={project} />
               )
             }
           </div>
