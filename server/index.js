@@ -3,27 +3,27 @@ const { ApolloServer, gql } = require('apollo-server');
 //This is a (sample) collection of books we'll be able to query
 // the GraphQL server for.  A more complete example might fetch
 // from an existing data source like a REST API or database.
-const books = [
+const projects = [
   {
-    title: 'Harry Potter and the Chamber of Secrets',
-    author: 'J.K. Rowling',
+    id: 1,
+    name: "Project Andrew",
   },
   {
-    title: 'Jurassic Park',
-    author: 'Michael Crichton',
+    id: 2,
+    name: "Project Leung",
   },
 ];
 
 // Type definitions define the "shape" of your data and specify
 // which ways the data can be fetched from the GraphQL server.
 const typeDefs = gql`
-type Book {
-  title: String
-  author: String
+type Project {
+  id: ID!
+  name: String
 }
 
 type Query {
-  books: [Book]
+  projects: [Project]
 }
  `;
 
@@ -31,7 +31,7 @@ type Query {
 // schema.  We'll retrieve books from the "books" array above.
 const resolvers = {
   Query: {
-    books: () => books,
+    projects: () => projects,
   },
 };
 
@@ -42,6 +42,6 @@ const server = new ApolloServer({ typeDefs, resolvers });
 
 // This `listen` method launches a web-server.  Existing apps
 // can utilize middleware options, which we'll discuss later.
-server.listen(process.env.PORT || 3000).then(({ url }) => {
+server.listen(process.env.PORT || 4000).then(({ url }) => {
   console.log(`🚀  Server ready at ${url}`);
 });

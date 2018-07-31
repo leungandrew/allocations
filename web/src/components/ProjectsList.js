@@ -10,17 +10,22 @@ export const GET_PROJECTS_QUERY = gql`
   }`;
 
 const ProjectsList = () => {
-  <Query query={GET_PROJECTS_QUERY}>
-    {({loading, error, data}) => {
-      if (loading || error) return null;
-      return (
-        <div>
-          <li>Project A</li>
-          <li>Project B</li>
-        </div>
-      )
-    }}
-  </Query>
+  return (
+    <Query query={GET_PROJECTS_QUERY}>
+      {({loading, error, data}) => {
+        if (loading || error) return (<p>Loading...</p>);
+        return (
+          <div>
+            {
+              data.projects.map(project =>
+                <div>{project.name}</div>
+              )
+            }
+          </div>
+        )
+      }}
+    </Query>
+  )
 };
 
 export default ProjectsList;
