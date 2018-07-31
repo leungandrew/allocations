@@ -4,13 +4,6 @@ exports[`DashboardPage renders ProjectLists 1`] = `
 <div
   id="container"
 >
-  <div>
-    <li>
-      Project A
-    </li>
-    <li>
-      Project B
-    </li>
-  </div>
+  <ProjectsList />
 </div>
 `;

@@ -1,11 +1,12 @@
 import React from 'react'
 import { shallow } from 'enzyme';
-import renderer from 'react-test-renderer';
+import toJson from 'enzyme-to-json';
 import DashboardPage from './DashboardPage';
 
 describe('DashboardPage', () => {
   it('renders ProjectLists', () => {
-    const tree = renderer.create(<DashboardPage/>).toJSON();
-    expect(tree).toMatchSnapshot();
+    const subject = shallow(<DashboardPage/>);
+
+    expect(toJson(subject)).toMatchSnapshot();
   })
 });
