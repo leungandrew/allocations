@@ -3,44 +3,17 @@ import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import express from 'express';
 import { makeExecutableSchema } from 'graphql-tools';
 import { printSchema } from 'graphql/utilities/schemaPrinter';
+import resolvers from './resolvers';
+import typeDefs from './types';
 
 //This is a (sample) collection of books we'll be able to query
 // the GraphQL server for.  A more complete example might fetch
 // from an existing data source like a REST API or database.
-const projects = [
-  {
-    id: 1,
-    name: "Project Andrew",
-  },
-  {
-    id: 2,
-    name: "Project Leung",
-  },
-  {
-    id: 3,
-    name: "Hello World",
-  },
-];
-
-const typeDefs = `
-type Project {
-  id: ID!
-  name: String
-}
-
-type Query {
-  projects: [Project]
-}
- `;
-
-const resolvers = {
-  Query: {
-    projects: () => projects,
-  },
-};
 
 const schema = makeExecutableSchema({
-  typeDefs,
+  typeDefs: [
+    ...typeDefs
+  ],
   resolvers
 });
 
