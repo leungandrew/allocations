@@ -13,6 +13,7 @@
     "funcs:copy": "cpx '*{package.json,yarn.lock}' dist/functions",
     "prefuncs:deploy": "yarn funcs:clean && yarn funcs:build && yarn funcs:copy",
     "funcs:deploy": "yarn firebase deploy --only functions",
+    "funcs:deploy-ci": "yarn firebase deploy --only functions --token \"$FIREBASE_TOKEN\"",
     "funcs:install": "cd dist/functions && yarn",
     "prefuncs:server": "yarn funcs:deploy",
     "funcs:serve": "firebase serve --only functions",
