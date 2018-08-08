@@ -16,6 +16,10 @@ const projects = [
     id: 2,
     name: "Project Leung",
   },
+  {
+    id: 3,
+    name: "Hello World",
+  },
 ];
 
 const typeDefs = `
