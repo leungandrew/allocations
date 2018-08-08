@@ -108,11 +108,26 @@ jobs:
       - get: server
         trigger: true
         passed: [test-server]
-      - put: cf
-        params:
-          manifest: server/server/manifest.yml
-          path: server/server
-          current_app_name: ((allocations-server))
+      - task: deploy
+        config:
+          platform: linux
+          image_resource:
+            type: docker-image
+            source:
+              repository: node
+              tag: "alpine"
+          inputs:
+            - name: server
+          params:
+            FIREBASE_TOKEN: ((firebase-token))
+          run:
+            path: sh
+            args:
+            - -exc
+            - |
+              cd server/server
+              yarn install
+              yarn funcs:deploy-ci
   - name: test-functional
     plan:
       - get: web
