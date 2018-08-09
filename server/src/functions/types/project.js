@@ -5,4 +5,4 @@ type Project {
 }
 `;
 
-export default project;
+export default () => [project];

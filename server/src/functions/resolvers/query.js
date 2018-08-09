@@ -11,12 +11,16 @@ const projects = [
     id: 3,
     name: "Hello World",
   },
+  {
+    id: 4,
+    name: "Let's do this!",
+  },
 ];
 
 const resolvers = {
   Query: {
-    projects: () => projects,
-  },
+    projects: () => projects
+  }
 };
 
 export default resolvers;

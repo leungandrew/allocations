@@ -3,4 +3,4 @@ import query from './query';
 
 const typeDefs = [project, query];
 
-export default typeDefs;
+export default () => typeDefs;

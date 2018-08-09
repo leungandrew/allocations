@@ -1,5 +1,7 @@
-import { resolvers as query } from './query';
+import Query from './query';
 
-const resolvers = [query];
+const resolvers = [
+  Query,
+];
 
 export default resolvers;

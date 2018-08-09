@@ -5,4 +5,4 @@ type Query {
 }
 `;
 
-export default [query, project];
+export default () => [query, project];

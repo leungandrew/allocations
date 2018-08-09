@@ -10,10 +10,9 @@ import typeDefs from './types';
 // the GraphQL server for.  A more complete example might fetch
 // from an existing data source like a REST API or database.
 
+console.log(typeDefs);
 const schema = makeExecutableSchema({
-  typeDefs: [
-    ...typeDefs
-  ],
+  typeDefs: [typeDefs],
   resolvers
 });
 
