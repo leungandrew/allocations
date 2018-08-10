@@ -1,25 +1,19 @@
-const projects = [
-  {
-    id: 1,
-    name: "Project Andrew",
-  },
-  {
-    id: 2,
-    name: "Project Leung",
-  },
-  {
-    id: 3,
-    name: "Hello World",
-  },
-  {
-    id: 4,
-    name: "Let's do this!",
-  },
-];
+import firebase from '../firebase';
 
 const resolvers = {
   Query: {
-    projects: () => projects
+    projects: async () => {
+      const snapshot = await firebase.firestore().collection("projects").get();
+      const result = [];
+      // wtf is this?? no map function?
+      snapshot.forEach( doc => {
+        result.push({
+          id: doc.id,
+          ...doc.data()
+        });
+      });
+      return result;
+    }
   }
 };
 
