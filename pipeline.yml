@@ -120,6 +120,9 @@ jobs:
             - name: server
           params:
             FIREBASE_TOKEN: ((firebase-token))
+            FIREBASE_PROJECT_ID: ((firebase-project-id))
+            FIREBASE_AUTH_DOMAIN: ((firebase-auth-domain))
+            FIREBASE_API_KEY: ((firebase-api-key))
           run:
             path: sh
             args:
