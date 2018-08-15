@@ -11,7 +11,7 @@ test('Dashboard Page loads', async t => {
 });
 
 test('Dashboard Page loads a project', async t => {
-  const project = Selector('#project-id-1');
+  const projects = Selector('#project-list');
   await t
-    .expect(project.exists).ok();
+    .expect(projects.exists).ok({timeout: 20000});
 });

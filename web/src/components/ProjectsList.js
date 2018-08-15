@@ -17,7 +17,7 @@ const ProjectsList = () => {
       {({loading, error, data}) => {
         if (loading || error) return (<p>Loading...</p>);
         return (
-          <div>
+          <div id="project-list">
             {
               data.projects.map(project =>
                 <Project project={project} />
