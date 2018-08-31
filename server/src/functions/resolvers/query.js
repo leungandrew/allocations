@@ -13,6 +13,13 @@ const resolvers = {
         });
       });
       return result;
+    },
+    project: async (root, args) => {
+      const doc = await firebase.firestore().collection("projects").doc(args.id).get();
+      return {
+        id: args.id,
+        ...doc.data()
+      }
     }
   }
 };
