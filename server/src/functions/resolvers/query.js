@@ -20,6 +20,19 @@ const resolvers = {
         id: args.id,
         ...doc.data()
       }
+    },
+  },
+  Project: {
+    resources: async (project) => {
+      const snapshot = await firebase.firestore().collection("projects").doc(project.id).collection("resources").get();
+      const result = [];
+      snapshot.forEach( doc => {
+        result.push({
+          id: doc.id,
+          ...doc.data()
+        });
+      });
+      return result;
     }
   }
 };
