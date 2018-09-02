@@ -8,6 +8,10 @@ export const GET_PROJECTS_QUERY = gql`
     projects {
       id
       name
+      resources {
+        firstName
+        lastName
+      }
     }
   }`;
 

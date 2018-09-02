@@ -1,5 +1,8 @@
 {
   "devDependencies": {
     "testcafe": "^0.20.5"
+  },
+  "scripts": {
+    "test": "testcafe chrome test.js"
   }
 }
