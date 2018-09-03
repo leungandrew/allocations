@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Resource renders a Resource 1`] = `
+<div>
+  FirstUser1
+   
+  LastUser1
+</div>
+`;

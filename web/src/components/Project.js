@@ -1,16 +1,14 @@
 import React from 'react';
-
+import ResourceList from './ResourceList';
 
 const Project = ({project: {id, name, resources}}) => {
   return (
     <div id={`project-id-${id}`} key={`project-id-${id}`}>
       {name}
-      {resources.map(resource =>
-        <div>{resource.firstName} {resource.lastName} </div>
-      )}
+      <br/>
+      <ResourceList resources={resources} />
     </div>
   )
 };
-
 
 export default Project;

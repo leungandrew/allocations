@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResourceList renders a list of Resources 1`] = `
+<div>
+  <Resource
+    id="id-1"
+    key="id-1"
+    resource={
+      Object {
+        "firstName": "FirstUser1",
+        "id": "id-1",
+        "lastName": "LastUser1",
+      }
+    }
+  />
+  <Resource
+    id="id-2"
+    key="id-2"
+    resource={
+      Object {
+        "firstName": "FirstUser2",
+        "id": "id-2",
+        "lastName": "LastUser2",
+      }
+    }
+  />
+</div>
+`;
